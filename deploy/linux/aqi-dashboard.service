@@ -1,0 +1,16 @@
+# systemd --user unit: runs the dashboard server on the tablet itself.
+#   cp deploy/linux/aqi-dashboard.service ~/.config/systemd/user/
+#   systemctl --user daemon-reload && systemctl --user enable --now aqi-dashboard
+#   loginctl enable-linger "$USER"     # keep it running without a login session
+[Unit]
+Description=AQI dashboard server
+After=network-online.target
+
+[Service]
+WorkingDirectory=%h/aqi-dashboard/app
+ExecStart=/usr/bin/python3 %h/aqi-dashboard/app/server.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=default.target

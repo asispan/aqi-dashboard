@@ -1,0 +1,8 @@
+/* Shared alert layer for all presets: standard traffic-light AQI colours (from the live BANDS:
+   Good #3fbf5f, Moderate #e8c419, USG #ff8a2a, Unhealthy #f2434f, Very unhealthy #9b4dca, Hazardous #8f1d3a).
+   Only alert elements use them: AQI chip, AQI scale, PM bars, AQI card glow. Everything else follows the preset. */
+.pill{background:var(--band)!important;color:var(--band-text,#111)!important;outline:none!important}
+.pill i{background:var(--band-text,#111)!important}
+.scale div{opacity:.35!important;outline:none!important}
+.scale div.on{opacity:1!important;box-shadow:0 0 0 2px var(--card),0 0 0 4px var(--ink)!important}
+.aqi::before{display:block!important;background:radial-gradient(120% 90% at 0% 0%,color-mix(in srgb,var(--band) 24%,transparent),transparent 60%)!important}

@@ -1,0 +1,5 @@
+[Desktop Entry]
+Type=Application
+Name=AQI Dashboard (kiosk)
+Exec=sh -c "$HOME/aqi-dashboard/deploy/linux/kiosk.sh"
+X-GNOME-Autostart-enabled=true

@@ -1,0 +1,19 @@
+/* Preset: Bone (day + night). Palette: #DDD4C5 #12130F #1FFF93 #002426.
+   Load after the main <style>, together with alerts.css + alerts.js (standard traffic-light AQI colours). */
+/* Day */
+:root[data-theme=light]{--bg:#DDD4C5;--card:#DDD4C5;--line:#12130F;--ink:#12130F;--mute:#002426;--accent:#002426;--shadow:none}
+:root[data-theme=light] .card{border:1.5px solid #12130F!important;box-shadow:none!important}
+/* Night */
+:root[data-theme=dark]{--bg:#12130F;--card:#002426;--line:#002426;--ink:#DDD4C5;--mute:#1FFF93;--accent:#1FFF93;--shadow:none}
+:root[data-theme=dark] .card{box-shadow:none!important}
+:root[data-theme=dark] .label{color:#1FFF93!important}
+:root[data-theme=dark] .pwr.on{color:#1FFF93!important;border-color:#1FFF93!important}
+/* Both */
+.range{background:linear-gradient(90deg,#002426,#1FFF93)!important;outline:1px solid var(--ink)}
+.pwr.on,.pwr.off{background:transparent!important;border-color:var(--ink)!important;color:var(--ink)!important}
+.tg.on .sw{background:#1FFF93!important}.tg .sw{background:var(--bg)!important;outline:1px solid var(--ink)}
+.tg .sw::after{background:#12130F!important;box-shadow:none!important}
+.dot{background:#1FFF93!important}
+.tile .bar{background:var(--bg)!important;outline:1px solid var(--line)}
+#b1{background:var(--accent)!important}
+input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(90deg,var(--ink) var(--p,50%),var(--bg) var(--p,50%))!important;outline:1px solid var(--ink)}

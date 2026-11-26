@@ -1,0 +1,19 @@
+/* Preset: Plum & Sage (day + night). Palette: #351431 #775253 #BDC696 #D1D3C4 #DFE0DC.
+   Load after the main <style>, together with alerts.css (standard traffic-light AQI colours). */
+/* Day */
+:root[data-theme=light]{--bg:#D1D3C4;--card:#DFE0DC;--line:#BDC696;--ink:#351431;--mute:#775253;--accent:#775253;--shadow:none}
+/* Night */
+:root[data-theme=dark]{--bg:#351431;--card:#351431;--line:#775253;--ink:#DFE0DC;--mute:#BDC696;--accent:#BDC696;--shadow:none}
+:root[data-theme=dark] .card{border:1.5px solid #775253!important}
+/* Both */
+.card{box-shadow:none!important}
+.range{background:linear-gradient(90deg,#775253,#BDC696)!important}
+.pwr.on,.pwr.off{background:transparent!important;border-color:var(--accent)!important;color:var(--ink)!important}
+.tg.on .sw{background:var(--accent)!important}.tg .sw{background:var(--bg)!important;outline:1px solid var(--line)}
+.tg .sw::after{background:var(--ink)!important;box-shadow:none!important}
+:root[data-theme=dark] .tg .sw::after{background:#351431!important}
+:root[data-theme=dark] .tg .sw{background:#775253!important}
+.dot{background:var(--accent)!important}
+.tile .bar{background:var(--bg)!important}
+#b1{background:var(--accent)!important}
+input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(90deg,var(--ink) var(--p,50%),var(--line) var(--p,50%))!important}

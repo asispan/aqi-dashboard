@@ -1,0 +1,14 @@
+[Unit]
+Description=AQI dashboard server
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=pi
+WorkingDirectory=/opt/aqi-dashboard/app
+ExecStart=/usr/bin/python3 /opt/aqi-dashboard/app/server.py
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,52 @@
+[
+ {
+  "id": "default",
+  "name": "Default",
+  "note": "Light by day, dark at night",
+  "css": null,
+  "thumbs": {
+   "day": "thumbs/default-day.jpg",
+   "night": "thumbs/default-night.jpg"
+  }
+ },
+ {
+  "id": "bone-meadow",
+  "name": "Bone + Sunny Meadow",
+  "note": "Bone by day \u00b7 Sunny Meadow by night",
+  "css": "bone-meadow.css",
+  "thumbs": {
+   "day": "thumbs/bone-day.jpg",
+   "night": "thumbs/sunny-meadow-night.jpg"
+  }
+ },
+ {
+  "id": "bone",
+  "name": "Bone",
+  "note": "Bone \u00b7 black \u00b7 spring green",
+  "css": "bone.css",
+  "thumbs": {
+   "day": "thumbs/bone-day.jpg",
+   "night": "thumbs/bone-night.jpg"
+  }
+ },
+ {
+  "id": "sunny-meadow",
+  "name": "Sunny Meadow",
+  "note": "Night only \u00b7 day uses Default",
+  "css": "sunny-meadow-night.css",
+  "thumbs": {
+   "day": "thumbs/default-day.jpg",
+   "night": "thumbs/sunny-meadow-night.jpg"
+  }
+ },
+ {
+  "id": "plum-sage",
+  "name": "Plum & Sage",
+  "note": "Plum \u00b7 mauve \u00b7 sage greys",
+  "css": "plum-sage.css",
+  "thumbs": {
+   "day": "thumbs/plum-sage-day.jpg",
+   "night": "thumbs/plum-sage-night.jpg"
+  }
+ }
+]

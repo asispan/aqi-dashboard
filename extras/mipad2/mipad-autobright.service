@@ -1,0 +1,13 @@
+[Unit]
+Description=Mi Pad 2 auto-brightness (LP8556 over I2C, ALS + sun times)
+After=systemd-modules-load.service
+
+[Service]
+EnvironmentFile=-/etc/default/mipad-autobright
+ExecStartPre=/usr/bin/modprobe i2c-dev
+ExecStart=/usr/bin/python3 /usr/local/bin/mipad-autobright
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,29 @@
+{
+  "home_name": "Living Room",
+  "temp_label": "Outdoor temperature",
+  "monitor": {
+    "type": "prana",
+    "url": "http://192.168.1.50/data",
+    "name": "Prana Air monitor",
+    "interval_s": 60
+  },
+  "location": {
+    "lat": 12.97,
+    "lon": 77.59
+  },
+  "listen": {
+    "host": "0.0.0.0",
+    "port": 8787
+  },
+  "forecast": true,
+  "default_preset": "default",
+  "power": {
+    "type": "auto"
+  },
+  "brightness": {
+    "type": "none"
+  },
+  "kiosk": {
+    "exit_command": ""
+  }
+}

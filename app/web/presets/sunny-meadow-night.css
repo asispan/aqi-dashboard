@@ -1,0 +1,13 @@
+/* Preset: Sunny Meadow (night only; day theme unchanged). Palette: #D0DB97 #69B578 #3A7D44 #254D32 #181D27.
+   Load after the main <style>, together with alerts.css + alerts.js (standard traffic-light AQI colours). */
+:root[data-theme=dark]{--bg:#181D27;--card:#254D32;--line:#254D32;--ink:#D0DB97;--mute:#69B578;--accent:#69B578;--shadow:none;--rng:linear-gradient(90deg,#3A7D44,#69B578,#D0DB97)}
+:root[data-theme=dark] .card{box-shadow:none!important}
+:root[data-theme=dark] .range{background:var(--rng)!important}
+:root[data-theme=dark] .pwr.on,:root[data-theme=dark] .pwr.off{background:transparent!important;border-color:var(--accent)!important;color:var(--ink)!important}
+:root[data-theme=dark] .tg.on .sw{background:var(--accent)!important}
+:root[data-theme=dark] .tg .sw{background:var(--bg)!important}
+:root[data-theme=dark] .tg .sw::after{background:var(--ink)!important;box-shadow:none!important}
+:root[data-theme=dark] .dot{background:var(--accent)!important}
+:root[data-theme=dark] .tile .bar{background:var(--bg)!important}
+:root[data-theme=dark] #b1{background:var(--accent)!important}
+:root[data-theme=dark] input[type=range]::-webkit-slider-runnable-track{background:linear-gradient(90deg,var(--ink) var(--p,50%),var(--bg) var(--p,50%))!important}

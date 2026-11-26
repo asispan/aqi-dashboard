@@ -8,7 +8,7 @@
 
 It reads the monitor you already own over your Wi-Fi. No cloud account, no app, no subscription.
 
-[Quick start](#quick-start-two-prompts) · [Presets](#presets) · [Devices](#supported-devices) · [How it works](#how-it-works) · [Configuration](#configuration) · [Limitations](#honest-limitations)
+[Quick start](#quick-start-two-prompts) · [Presets](#presets) · [Devices](#supported-devices) · [How it works](#how-it-works) · [Configuration](#configuration)
 
 ![Python](https://img.shields.io/badge/python-3.9%2B%20stdlib%20only-3776ab)
 ![Dependencies](https://img.shields.io/badge/dependencies-0-success)
@@ -200,30 +200,6 @@ flowchart LR
 
 **Preview URLs** (handy for screenshots): `/?preset=plum-sage&theme=dark`, or `/?presets=1` to open the picker.
 
-## Honest limitations
-
-- **The AQI is live, not official.** The EPA's AQI is a 24-hour average; this shows the current PM2.5 converted on the EPA scale, so it moves faster than an official reading.
-- **Low-cost PM sensors drift.** Prana and Bohu units use optical particle counters. They're good for trends and big moves, but expect differences from regulatory monitors, especially at high humidity.
-- **CO2 reads `0`** on Bohu units without an NDIR sensor. The dashboard ignores it.
-- **The temperature is the monitor's own.** Mount the monitor in the shade: direct sun can push it up by several degrees.
-- **iPad can't control brightness or show charging state** from a web page, and Guided Access must be left by hand.
-- **Fully Kiosk brightness and exit need a PLUS licence** (the JavaScript Interface). If you enable it, also set a URL whitelist.
-- **Measured on a 2015 Mi Pad 2** (Atom x5-Z8500, 2 GB RAM, 10 s `top` sample while showing the dashboard): the system was 94 % idle, Chromium used about 2 % of one core and `server.py` under 1 %; memory in use was 1.0 of 1.8 GB for the whole OS.
-- **Only the Linux path is tested on hardware so far.** The Android and iPad guides are built from the platforms' documented features (Fully Kiosk JavaScript API, Guided Access) but haven't yet been run end to end on those devices.
-
-## Repository layout
-
-```
-app/
-  server.py            # the whole backend: adapters, history, sun times, API (stdlib only)
-  config.example.json
-  web/                 # the dashboard page, presets, bundled Inter font
-deploy/
-  linux/  android/  ipad/  host/   # step-by-step guides + service files per platform
-extras/mipad2/         # Xiaomi Mi Pad 2 on Linux: I²C backlight daemon, touch notes
-docs/                  # screenshots, presets guide
-```
-
 ## Credits
 
 - Forecast by [Open-Meteo](https://open-meteo.com) (CC BY 4.0).
@@ -233,3 +209,7 @@ docs/                  # screenshots, presets guide
 ## License
 
 [MIT](LICENSE). Not affiliated with Prana Air, Xiaomi or Apple.
+
+---
+
+<p align="center"><img src="docs/screens/mipad-in-use.jpg" alt="The dashboard running on a Xiaomi Mi Pad 2 at home" width="100%"></p>

@@ -19,16 +19,7 @@ It reads the monitor you already own over your Wi-Fi. No cloud account, no app, 
 
 ---
 
-## What you get
-
-- **A huge US AQI number**, readable from across the room. The card colour follows the EPA bands; the default theme uses the standard traffic-light colours on every preset.
-- **Temperature and humidity** from your monitor, with today's min/max range, a "feels like" value and humidity.
-- **PM2.5, PM10 and PM1** tiles, plus a **next-hour forecast** emoji from [Open-Meteo](https://open-meteo.com) (free, no API key).
-- **Five presets**, chosen on the tablet itself with a three-finger hold. Light at day and dark at night, switched at your local sunrise and sunset.
-- **Kiosk-grade behaviour:**
-  - full screen, survives reboots and power cuts, keeps the last good reading on screen if Wi-Fi blips;
-  - an **Exit app** button in the preset picker;
-  - **brightness and charging** controls where the platform allows them.
+<p align="center"><img src="docs/screens/mipad-sunny-meadow-night.png" alt="AQI Dashboard, Sunny Meadow night preset" width="60%"></p>
 
 ## Quick start: two prompts
 

@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/screens/mipad-sunny-meadow-night.png" alt="AQI Dashboard, Sunny Meadow night preset" width="100%">
+<img src="docs/screens/hero-composite.jpg" alt="Got an AQI monitor at home? Give it a screen: the AQI dashboard on a spare tablet" width="100%">
 
 # AQI Dashboard
 

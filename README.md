@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/renders/hero.jpg" alt="AQI Dashboard on a Xiaomi Mi Pad 2 and an iPad" width="100%">
+<img src="docs/screens/mipad-sunny-meadow-night.png" alt="AQI Dashboard, Sunny Meadow night preset" width="100%">
 
 # AQI Dashboard
 
@@ -29,8 +29,6 @@ It reads the monitor you already own over your Wi-Fi. No cloud account, no app, 
   - full screen, survives reboots and power cuts, keeps the last good reading on screen if Wi-Fi blips;
   - an **Exit app** button in the preset picker;
   - **brightness and charging** controls where the platform allows them.
-
-<p align="center"><img src="docs/renders/lineup.jpg" alt="All presets on Mi Pad 2 tablets" width="100%"></p>
 
 ## Quick start: two prompts
 
@@ -158,14 +156,9 @@ To add your own preset, see [docs/presets.md](docs/presets.md). It's one CSS fil
 | Charging icon | ✅ | ✅ | ➖ (not exposed by iOS) |
 | **Exit app** button | ✅ closes the kiosk | ✅ `fully.exit()` | ℹ️ shows how to leave Guided Access |
 | Root / jailbreak needed | No | No | No |
-| Tested on real hardware | ✅ Xiaomi Mi Pad 2 (Omarchy) | ❌ not yet | ❌ not yet: renders use real screenshots at iPad resolution |
+| Tested on real hardware | ✅ Xiaomi Mi Pad 2 (Omarchy) | ❌ not yet | ❌ not yet |
 
 <sub>*iPad: after a restart, open the web app from the Home Screen and triple-click to resume Guided Access. The Android and iPad guides follow the platforms' documented features; reports from real devices are welcome.</sub>
-
-<p align="center">
-<img src="docs/renders/ipad.jpg" alt="iPad showing the Plum & Sage preset" width="49%">
-<img src="docs/renders/mipad.jpg" alt="Mi Pad 2 at night with Sunny Meadow" width="49%">
-</p>
 
 ## How it works
 
@@ -228,18 +221,14 @@ app/
 deploy/
   linux/  android/  ipad/  host/   # step-by-step guides + service files per platform
 extras/mipad2/         # Xiaomi Mi Pad 2 on Linux: I²C backlight daemon, touch notes
-tools/render/          # Three.js product renders (docs/renders), reproducible
-docs/                  # screenshots, renders, presets guide
+docs/                  # screenshots, presets guide
 ```
-
-<p align="center"><img src="docs/renders/pair.jpg" alt="iPad and Mi Pad 2 at night" width="100%"></p>
 
 ## Credits
 
 - Forecast by [Open-Meteo](https://open-meteo.com) (CC BY 4.0).
 - Typeface [Inter](https://rsms.me/inter/) (SIL OFL 1.1).
 - Palettes adapted from [Coolors](https://coolors.co).
-- The renders are real-time Three.js scenes ([`tools/render`](tools/render)), with real dashboard screenshots as the screens.
 
 ## License
 

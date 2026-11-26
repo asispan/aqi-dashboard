@@ -209,6 +209,15 @@ def preset():
         return CFG.get("default_preset", "default")
 
 
+def preset_mode():
+    """'auto' follows sunrise/sunset; 'dark' locks the preset's night look."""
+    try:
+        with open(PRESET_FILE) as f:
+            return json.load(f).get("mode", "auto")
+    except Exception:
+        return "auto"
+
+
 def caps():
     return {"brightness": bright() is not None,
             "exit": bool(CFG["kiosk"].get("exit_command"))}
@@ -244,7 +253,7 @@ class Handler(SimpleHTTPRequestHandler):
         if self.path.startswith("/api/state"):
             with lock:
                 out = {**state, "hist": list(hist), "now": time.time()}
-            out.update(theme=theme(), power=power(), bright=bright(), preset=preset(),
+            out.update(theme=theme(), power=power(), bright=bright(), preset=preset(), preset_mode=preset_mode(),
                        caps=caps(), home_name=CFG["home_name"],
                        temp_label=CFG.get("temp_label", "Outdoor temperature"),
                        sensor_name=CFG["monitor"].get("name", "Air quality monitor"))
@@ -254,12 +263,16 @@ class Handler(SimpleHTTPRequestHandler):
     def do_POST(self):
         try:
             if self.path == "/api/preset":
-                pid = str(self._body()["id"])
+                body = self._body()
+                pid = str(body["id"])
                 with open(os.path.join(WEB, "presets", "index.json")) as f:
                     if pid not in {p["id"] for p in json.load(f)}:
                         raise ValueError("unknown preset")
+                mode = body.get("mode", "auto")
+                if mode not in ("auto", "dark"):
+                    raise ValueError("mode must be auto or dark")
                 with open(PRESET_FILE, "w") as f:
-                    json.dump({"id": pid}, f)
+                    json.dump({"id": pid, "mode": mode}, f)
                 return self._json({"ok": True})
             # Device controls are only accepted from the tablet itself.
             if not self._local():

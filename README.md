@@ -124,7 +124,12 @@ needs root, a jailbreak or an unlocked bootloader. Keep the dashboard on my loca
 
 ## Presets
 
-To open the picker, hold three fingers on the screen for about a second, or press and hold the home name in the top-left corner. Tap a preset to apply it. It stays active until you change it, including across reboots.
+To open the picker, hold three fingers on the screen for about a second, or press and hold the home name in the top-left corner. Every design appears twice:
+
+- **Auto** follows your local sunrise and sunset.
+- **Night** keeps the dark look all day, which is handy for dim rooms.
+
+Tap one to apply it. It stays active until you change it, including across reboots.
 
 The picker also holds the **Exit app** button.
 

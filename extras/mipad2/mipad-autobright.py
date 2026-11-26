@@ -82,6 +82,11 @@ def main():
         if ov.isdigit():                      # manual hold from the dashboard slider
             bl.set(max(8, min(255, int(ov))))  # floor 8: never fully black
             was_manual = True
+            if time.time() - last_auto >= POLL:  # keep the sun signal fresh: the theme follows it
+                last_auto = time.time()
+                w = day_weight(datetime.datetime.now())
+                with open(f"{STATE}/status", "w") as f:
+                    f.write(f"lux=manual day_weight={w:.2f} target={bl.cur} level={bl.cur}\n")
             time.sleep(0.15); continue
         if was_manual:                        # back to auto: fade from the manual level
             smooth, was_manual, last_auto = bl.cur, False, 0.0

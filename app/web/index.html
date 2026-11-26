@@ -182,7 +182,8 @@ TG.addEventListener("click",async()=>{const on=!TG.classList.contains("on");TG.c
  await sendBr(on?{mode:"auto"}:{level:+BR.value});setTimeout(async()=>{try{const s=await (await fetch("/api/state")).json();holdUntil=0;brightnessCard(s)}catch(e){}},2500)});
 async function load(){
  try{const s=await (await fetch("/api/state",{cache:"no-store"})).json();
-  document.documentElement.dataset.theme=new URLSearchParams(location.search).get("theme")||s.theme||(s.wx&&s.wx.current&&s.wx.current.is_day?"light":"dark");
+  window.__presetMode=s.preset_mode||"auto";window.__sunTheme=s.theme||(s.wx&&s.wx.current&&s.wx.current.is_day?"light":"dark");
+  document.documentElement.dataset.theme=(window.__presetMode==="dark"?"dark":null)||new URLSearchParams(location.search).get("theme")||s.theme||(s.wx&&s.wx.current&&s.wx.current.is_day?"light":"dark");
   const Q0=new URLSearchParams(location.search);
   const a=s.aqi;
   if(a){const Q=new URLSearchParams(location.search);const aqi=+Q.get("aqi")||Math.max(sub(Math.floor(a.pm25*10)/10,P25),a.pm10!=null?sub(Math.floor(a.pm10),P10):0),bi=bandOf(aqi),b=BANDS[bi];
@@ -216,7 +217,7 @@ document.fonts&&document.fonts.ready.then(()=>{try{fitAll()}catch(e){}});tick();
 </script><div id="pp"><div class="pph"><h3>Presets</h3><button class="exit" id="exitapp" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4M10 17l5-5-5-5M15 12H3"/></svg>Exit app</button></div><div class="row" id="pprow"></div><div class="hint" id="pphint">Swipe to browse · tap a preset to apply · tap outside to close</div></div>
 <script>
 /* ---- presets ---- */
-(()=>{const R=document.documentElement;let REG=[],cur="default";
+(()=>{const R=document.documentElement;let REG=[],cur="default",curMode="auto";
  const lum=h=>{h=(h||"").replace("#","");if(h.length!==6)return 1;const c=[0,2,4].map(i=>{let v=parseInt(h.substr(i,2),16)/255;return v<=.03928?v/12.92:((v+.055)/1.055)**2.4});return .2126*c[0]+.7152*c[1]+.0722*c[2]};
  const bandText=()=>{const b=getComputedStyle(R).getPropertyValue("--band").trim();if(b)R.style.setProperty("--band-text",lum(b)>.18?"#111111":"#ffffff")};
  new MutationObserver(bandText).observe(R,{attributes:true,attributeFilter:["style"]});
@@ -224,17 +225,18 @@ document.fonts&&document.fonts.ready.then(()=>{try{fitAll()}catch(e){}});tick();
   document.querySelectorAll("link[data-preset]").forEach(l=>l.remove());
   if(p.css){for(const f of[p.css,"alerts.css"]){const l=document.createElement("link");l.rel="stylesheet";l.href="presets/"+f+"?v="+Date.now();l.dataset.preset=1;document.head.appendChild(l)}}
   bandText();setTimeout(()=>{try{fitAll()}catch(e){}},400);render()}
- function render(){const night=R.dataset.theme==="dark";
-  $("pprow").innerHTML=REG.map(p=>`<button class="pc${p.id===cur?" on":""}" data-id="${p.id}"><img src="presets/${night?p.thumbs.night:p.thumbs.day}" alt=""><div class="nm"><span>${p.name}</span>${p.id===cur?'<span class="badge">Active</span>':""}</div><div class="nt">${p.note}</div></button>`).join("")}
- window.presetFromState=id=>{if(id&&id!==cur)apply(id)};
- async function choose(id){apply(id);close();try{await fetch("/api/preset",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id})})}catch(e){}}
+ function card(p,mode){const on=p.id===cur&&mode===curMode,night=mode==="dark";
+  return `<button class="pc${on?" on":""}" data-id="${p.id}" data-mode="${mode}"><img src="presets/${night?p.thumbs.night:p.thumbs.day}" alt=""><div class="nm"><span>${p.name}${mode==="dark"?" · Night":""}</span>${on?'<span class="badge">Active</span>':""}</div><div class="nt">${mode==="dark"?"Always dark, day or night":p.note}</div></button>`}
+ function render(){$("pprow").innerHTML=REG.map(p=>card(p,"auto")+card(p,"dark")).join("")}
+ window.presetFromState=(id,mode)=>{curMode=mode||window.__presetMode||"auto";if(id&&id!==cur)apply(id)};
+ async function choose(id,mode){curMode=window.__presetMode=mode||"auto";R.dataset.theme=curMode==="dark"?"dark":(window.__sunTheme||R.dataset.theme);apply(id);close();try{await fetch("/api/preset",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({id,mode:curMode})})}catch(e){}}
  function open_(){fetch("presets/index.json",{cache:"no-store"}).then(r=>r.json()).then(r=>{REG=r}).catch(()=>0).then(show_)}
  function show_(){render();$("pp").classList.add("open");const on=$("pprow").querySelector(".on");if(on)on.scrollIntoView({inline:"center",block:"nearest"})}
  function close(){$("pp").classList.remove("open")}
  window.openPresets=open_;
  let moved=false;
  $("pprow").addEventListener("pointerdown",()=>moved=false);$("pprow").addEventListener("scroll",()=>moved=true,{passive:true});
- $("pp").addEventListener("click",e=>{const c=e.target.closest(".pc");if(c){if(!moved)choose(c.dataset.id)}else if(!e.target.closest(".row"))close()});
+ $("pp").addEventListener("click",e=>{const c=e.target.closest(".pc");if(c){if(!moved)choose(c.dataset.id,c.dataset.mode)}else if(!e.target.closest(".row"))close()});
  /* three-finger touch and hold */
  let lp=null,start=null;
  addEventListener("touchstart",e=>{if(e.touches.length>=3&&!lp){start=[...e.touches].map(t=>[t.clientX,t.clientY]);lp=setTimeout(()=>{lp=null;open_()},700)}},{passive:true,capture:true});
